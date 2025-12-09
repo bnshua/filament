@@ -3,1026 +3,399 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sliding Filament Theory - Muscle Contraction Explained</title>
+    <title>Sliding Filament Theory</title>
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
+        * { margin: 0; padding: 0; box-sizing: border-box; }
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
             background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            min-height: 100vh;
-            padding: 20px;
             color: #333;
+            line-height: 1.6;
+            padding: 20px;
         }
-
         .container {
             max-width: 1200px;
             margin: 0 auto;
-            background: rgba(255, 255, 255, 0.95);
+            background: white;
             border-radius: 20px;
-            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
             overflow: hidden;
         }
-
         header {
             background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
             color: white;
-            padding: 60px 40px;
+            padding: 40px;
             text-align: center;
         }
-
-        h1 {
-            font-size: 3em;
-            margin-bottom: 15px;
-            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
-        }
-
-        .subtitle {
-            font-size: 1.3em;
-            opacity: 0.95;
-        }
-
-        .content {
-            padding: 50px 40px;
-        }
-
-        .intro {
-            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
-            padding: 30px;
-            border-radius: 15px;
-            margin-bottom: 50px;
-            border-left: 5px solid #667eea;
-        }
-
-        .intro p {
-            font-size: 1.15em;
-            line-height: 1.8;
-            color: #444;
-        }
-
-        .example-section {
-            margin-bottom: 60px;
-        }
-
-        .example {
-            background: white;
-            border-radius: 15px;
-            padding: 35px;
-            margin-bottom: 30px;
-            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
-            border-left: 6px solid #667eea;
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-        }
-
-        .example:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
-        }
-
-        .example h3 {
+        h1 { font-size: 2.5em; margin-bottom: 10px; text-shadow: 2px 2px 4px rgba(0,0,0,0.2); }
+        .subtitle { font-size: 1.2em; opacity: 0.9; }
+        .content { padding: 40px; }
+        h2 {
             color: #667eea;
-            font-size: 1.8em;
-            margin-bottom: 20px;
-            display: flex;
-            align-items: center;
-        }
-
-        .example-number {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            color: white;
-            width: 50px;
-            height: 50px;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin-right: 15px;
-            font-weight: bold;
-            font-size: 1.3em;
-        }
-
-        .example p {
-            font-size: 1.1em;
-            line-height: 1.8;
-            color: #555;
+            margin-top: 30px;
             margin-bottom: 15px;
+            font-size: 1.8em;
+            border-bottom: 3px solid #667eea;
+            padding-bottom: 10px;
         }
-
-        .interactive-demo {
-            background: linear-gradient(135deg, #e0e7ff 0%, #f0e7ff 100%);
-            padding: 30px;
-            border-radius: 10px;
-            margin-top: 25px;
-            border: 2px solid #667eea;
-        }
-
-        .interactive-demo h4 {
-            color: #764ba2;
-            margin-bottom: 20px;
-            font-size: 1.3em;
-            text-align: center;
-        }
-
-        .sarcomere-container {
-            background: white;
-            padding: 40px 20px;
-            border-radius: 10px;
-            margin: 20px 0;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .sarcomere {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 10px;
-            margin: 30px 0;
-            position: relative;
-            transition: all 0.5s ease;
-        }
-
-        .z-line {
-            width: 4px;
-            height: 80px;
-            background: #2d3748;
-            position: relative;
-        }
-
-        .z-line::after {
-            content: 'Z-line';
-            position: absolute;
-            top: -25px;
-            left: -15px;
-            font-size: 0.8em;
-            color: #2d3748;
-            font-weight: bold;
-        }
-
-        .filament-stack {
-            display: flex;
-            flex-direction: column;
-            gap: 15px;
-            position: relative;
-        }
-
-        .filament {
-            height: 25px;
-            border-radius: 12px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-weight: bold;
+        h3 { color: #764ba2; margin-top: 20px; margin-bottom: 10px; font-size: 1.3em; }
+        .intro {
+            background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
             color: white;
-            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
-            font-size: 0.9em;
-            transition: all 0.5s ease;
+            padding: 30px;
+            border-radius: 15px;
+            margin-bottom: 30px;
+            font-size: 1.1em;
         }
-
-        .thick-filament {
-            background: linear-gradient(90deg, #667eea 0%, #764ba2 100%);
-            width: 200px;
-            position: relative;
+        .simulation {
+            background: linear-gradient(135deg, #4facfe 0%, #00f2fe 100%);
+            padding: 30px;
+            border-radius: 15px;
+            margin: 30px 0;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
         }
-
-        .myosin-head {
-            position: absolute;
-            width: 12px;
-            height: 12px;
-            background: #f5576c;
-            border-radius: 50%;
-            top: -5px;
-            animation: pulse 1s ease-in-out infinite;
+        .simulation h3 { color: white; font-size: 1.5em; margin-bottom: 20px; }
+        canvas {
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+            display: block;
+            margin: 20px auto;
+            cursor: pointer;
         }
-
-        @keyframes pulse {
-            0%, 100% { transform: scale(1); }
-            50% { transform: scale(1.2); }
-        }
-
-        .thin-filament {
-            background: linear-gradient(90deg, #f093fb 0%, #f5576c 100%);
-            transition: all 0.5s ease;
-        }
-
-        .thin-filament-top {
-            width: 180px;
-        }
-
-        .thin-filament-bottom {
-            width: 180px;
-        }
-
-        .contracted .thin-filament-top,
-        .contracted .thin-filament-bottom {
-            width: 220px;
-        }
-
-        .contracted .sarcomere {
-            gap: 5px;
-        }
-
-        .control-button {
+        .controls { text-align: center; margin-top: 20px; }
+        button {
             background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
             color: white;
             border: none;
             padding: 15px 40px;
-            border-radius: 30px;
+            font-size: 1.1em;
+            border-radius: 50px;
+            cursor: pointer;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+            transition: transform 0.2s, box-shadow 0.2s;
+            margin: 5px;
+        }
+        button:hover { transform: translateY(-2px); box-shadow: 0 8px 20px rgba(0,0,0,0.3); }
+        button:active { transform: translateY(0); }
+        .slider-container { margin: 20px 0; text-align: center; }
+        input[type="range"] {
+            width: 80%;
+            height: 8px;
+            border-radius: 5px;
+            background: white;
+            outline: none;
+            margin: 10px 0;
+        }
+        .slider-label {
+            color: white;
             font-size: 1.1em;
             font-weight: bold;
-            cursor: pointer;
             display: block;
-            margin: 20px auto;
-            box-shadow: 0 4px 15px rgba(102, 126, 234, 0.4);
-            transition: all 0.3s ease;
+            margin-bottom: 10px;
         }
-
-        .control-button:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 6px 20px rgba(102, 126, 234, 0.6);
-        }
-
-        .control-button:active {
-            transform: translateY(0);
-        }
-
-        .status-indicator {
-            text-align: center;
-            font-size: 1.2em;
-            font-weight: bold;
-            color: #667eea;
+        .term {
+            background: #f8f9fa;
+            padding: 20px;
             margin: 15px 0;
-            padding: 10px;
-            background: rgba(102, 126, 234, 0.1);
-            border-radius: 8px;
+            border-left: 5px solid #667eea;
+            border-radius: 5px;
+            transition: transform 0.2s;
         }
-
-        .atp-cycle {
+        .term:hover { transform: translateX(5px); box-shadow: 0 5px 15px rgba(0,0,0,0.1); }
+        .term-title { font-weight: bold; color: #667eea; font-size: 1.2em; margin-bottom: 5px; }
+        .concept {
+            background: linear-gradient(135deg, #ffecd2 0%, #fcb69f 100%);
+            padding: 25px;
+            margin: 20px 0;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+        .process-steps { background: white; padding: 20px; border-radius: 10px; margin-top: 15px; }
+        .step {
+            padding: 15px;
+            margin: 10px 0;
+            background: linear-gradient(135deg, #a8edea 0%, #fed6e3 100%);
+            border-radius: 8px;
+            font-weight: 500;
+        }
+        .step::before { content: "→ "; font-weight: bold; color: #667eea; }
+        .stats {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
             gap: 15px;
             margin: 20px 0;
         }
-
-        .cycle-step {
+        .stat-box { background: white; padding: 15px; border-radius: 10px; text-align: center; font-weight: bold; }
+        .stat-value { font-size: 1.5em; color: #667eea; }
+        .instruction {
             background: white;
-            padding: 20px;
+            color: #333;
+            padding: 15px;
             border-radius: 10px;
-            text-align: center;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            border: 3px solid transparent;
-        }
-
-        .cycle-step:hover {
-            transform: scale(1.05);
-            border-color: #667eea;
-        }
-
-        .cycle-step.active {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            color: white;
-            transform: scale(1.08);
-        }
-
-        .cycle-number {
-            font-size: 2em;
-            font-weight: bold;
-            color: #667eea;
-            margin-bottom: 10px;
-        }
-
-        .cycle-step.active .cycle-number {
-            color: white;
-        }
-
-        .step-detail-popup {
-            position: fixed;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            background: white;
-            border-radius: 15px;
-            box-shadow: 0 10px 50px rgba(0, 0, 0, 0.3);
-            z-index: 1000;
-            max-width: 700px;
-            width: 90%;
-            max-height: 80vh;
-            overflow-y: auto;
-        }
-
-        .popup-header {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            color: white;
-            padding: 25px;
-            border-radius: 15px 15px 0 0;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .popup-header h3 {
-            margin: 0;
-            font-size: 1.5em;
-        }
-
-        .close-popup {
-            background: rgba(255, 255, 255, 0.2);
-            border: none;
-            color: white;
-            font-size: 1.5em;
-            width: 40px;
-            height: 40px;
-            border-radius: 50%;
-            cursor: pointer;
-            transition: all 0.3s ease;
-        }
-
-        .close-popup:hover {
-            background: rgba(255, 255, 255, 0.3);
-            transform: rotate(90deg);
-        }
-
-        .popup-content {
-            padding: 30px;
-        }
-
-        .popup-content p {
-            font-size: 1.1em;
-            line-height: 1.8;
-            color: #555;
-            margin-bottom: 25px;
-        }
-
-        .step-visualization {
-            background: linear-gradient(135deg, #f5f7fa 0%, #e0e7ff 100%);
-            padding: 30px;
-            border-radius: 10px;
-            margin: 20px 0;
-            min-height: 200px;
-        }
-
-        .myosin-head-demo {
-            position: relative;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 20px;
-            margin: 20px 0;
-        }
-
-        .actin-strand {
-            width: 300px;
-            height: 30px;
-            background: linear-gradient(90deg, #f093fb 0%, #f5576c 100%);
-            border-radius: 15px;
-            position: relative;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: white;
-            font-weight: bold;
-        }
-
-        .binding-site {
-            position: absolute;
-            width: 20px;
-            height: 20px;
-            background: rgba(255, 255, 255, 0.5);
-            border-radius: 50%;
-            border: 2px dashed white;
-        }
-
-        .myosin-head-animated {
-            width: 40px;
-            height: 40px;
-            background: radial-gradient(circle, #667eea, #764ba2);
-            border-radius: 50% 50% 0 50%;
-            position: absolute;
-            transition: all 0.8s ease;
-            box-shadow: 0 4px 15px rgba(102, 126, 234, 0.5);
-        }
-
-        .myosin-neck {
-            width: 8px;
-            height: 40px;
-            background: linear-gradient(180deg, #667eea 0%, #764ba2 100%);
-            position: absolute;
-            bottom: -40px;
-            left: 50%;
-            transform: translateX(-50%);
-            transition: all 0.8s ease;
-        }
-
-        .atp-molecule {
-            width: 50px;
-            height: 50px;
-            background: radial-gradient(circle, #ffd700, #ffa500);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-weight: bold;
-            color: white;
-            font-size: 0.9em;
-            box-shadow: 0 4px 15px rgba(255, 215, 0, 0.6);
-            animation: glow 1.5s ease-in-out infinite;
-        }
-
-        @keyframes glow {
-            0%, 100% { box-shadow: 0 4px 15px rgba(255, 215, 0, 0.6); }
-            50% { box-shadow: 0 4px 25px rgba(255, 215, 0, 1); }
-        }
-
-        .adp-molecule {
-            width: 40px;
-            height: 40px;
-            background: radial-gradient(circle, #90caf9, #42a5f5);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-weight: bold;
-            color: white;
-            font-size: 0.8em;
-            box-shadow: 0 2px 10px rgba(66, 165, 245, 0.5);
-        }
-
-        .phosphate {
-            width: 25px;
-            height: 25px;
-            background: radial-gradient(circle, #fff, #e0e0e0);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-weight: bold;
-            color: #666;
-            font-size: 0.7em;
-            border: 2px solid #999;
-        }
-
-        .navigation-buttons {
-            display: flex;
-            gap: 15px;
-            justify-content: center;
-            margin-top: 25px;
-        }
-
-        .nav-button {
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            color: white;
-            border: none;
-            padding: 12px 30px;
-            border-radius: 25px;
+            margin-top: 15px;
             font-size: 1em;
-            font-weight: bold;
-            cursor: pointer;
-            transition: all 0.3s ease;
-        }
-
-        .nav-button:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 5px 15px rgba(102, 126, 234, 0.4);
-        }
-
-        .step-animation-container {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 15px;
-        }
-
-        .arrow-indicator {
-            font-size: 2em;
-            color: #667eea;
-            font-weight: bold;
-        }
-
-        .slider-container {
-            margin: 30px 0;
-            padding: 20px;
-            background: white;
-            border-radius: 10px;
-        }
-
-        .slider-label {
-            font-weight: bold;
-            color: #667eea;
-            margin-bottom: 10px;
-            font-size: 1.1em;
-        }
-
-        input[type="range"] {
-            width: 100%;
-            height: 8px;
-            border-radius: 5px;
-            background: #d3d3d3;
-            outline: none;
-            -webkit-appearance: none;
-        }
-
-        input[type="range"]::-webkit-slider-thumb {
-            -webkit-appearance: none;
-            appearance: none;
-            width: 25px;
-            height: 25px;
-            border-radius: 50%;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            cursor: pointer;
-            box-shadow: 0 2px 10px rgba(102, 126, 234, 0.5);
-        }
-
-        input[type="range"]::-moz-range-thumb {
-            width: 25px;
-            height: 25px;
-            border-radius: 50%;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            cursor: pointer;
-            box-shadow: 0 2px 10px rgba(102, 126, 234, 0.5);
-            border: none;
-        }
-
-        .calcium-particles {
-            display: flex;
-            gap: 10px;
-            flex-wrap: wrap;
-            justify-content: center;
-            margin: 20px 0;
-        }
-
-        .calcium-ion {
-            width: 30px;
-            height: 30px;
-            background: radial-gradient(circle, #ffd700, #ffa500);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-weight: bold;
-            color: white;
-            font-size: 0.8em;
-            box-shadow: 0 2px 10px rgba(255, 215, 0, 0.5);
-            animation: float 2s ease-in-out infinite;
-            opacity: 0;
-            transition: opacity 0.5s ease;
-        }
-
-        .calcium-ion.active {
-            opacity: 1;
-        }
-
-        @keyframes float {
-            0%, 100% { transform: translateY(0); }
-            50% { transform: translateY(-10px); }
-        }
-
-        .key-point {
-            background: #fff9e6;
-            padding: 15px 20px;
-            border-radius: 8px;
-            margin: 15px 0;
-            border-left: 4px solid #ffd700;
-        }
-
-        .key-point strong {
-            color: #764ba2;
-        }
-
-        footer {
-            background: #2d3748;
-            color: white;
             text-align: center;
-            padding: 30px;
-            font-size: 0.95em;
-        }
-
-        @media (max-width: 768px) {
-            h1 {
-                font-size: 2em;
-            }
-
-            .content {
-                padding: 30px 20px;
-            }
-
-            .sarcomere {
-                flex-direction: column;
-            }
-
-            .thick-filament, .thin-filament-top, .thin-filament-bottom {
-                width: 150px !important;
-            }
-
-            .contracted .thin-filament-top,
-            .contracted .thin-filament-bottom {
-                width: 180px !important;
-            }
         }
     </style>
 </head>
 <body>
     <div class="container">
         <header>
-            <h1>🔬 Sliding Filament Theory</h1>
-            <p class="subtitle">Understanding How Muscles Contract at the Molecular Level</p>
+            <h1>⚡ Sliding Filament Theory ⚡</h1>
+            <p class="subtitle">Understanding Muscle Contraction at the Molecular Level</p>
+            <p style="font-size: 0.9em; margin-top: 15px; opacity: 0.95;">Created & Visualized by Amaya Davis-Diop & Karina Rodda</p>
         </header>
-
+        
         <div class="content">
             <div class="intro">
-                <p>
-                    The <strong>Sliding Filament Theory</strong> explains how muscle contraction occurs at the molecular level. 
-                    Proposed by Andrew Huxley and Rolf Niedergerke in 1954, this theory describes how thick (myosin) and 
-                    thin (actin) filaments slide past each other to shorten the muscle fiber, generating force without 
-                    the filaments themselves changing length.
-                </p>
+                <strong>The Sliding Filament Theory</strong> explains how muscles contract to produce force and movement. Rather than muscle fibers themselves shortening, the theory describes how protein filaments slide past each other within each sarcomere, the basic unit of muscle contraction. This sliding action, powered by ATP and regulated by calcium ions, causes the muscle to shorten and generate the force needed for everything from maintaining posture to explosive athletic movements.
             </div>
-
-            <div class="example-section">
-                <h2 style="color: #667eea; font-size: 2.2em; margin-bottom: 30px; text-align: center;">
-                    Three Interactive Examples of Sliding Filament Theory
-                </h2>
-
-                <!-- EXAMPLE 1: BICEP CURL -->
-                <div class="example">
-                    <h3>
-                        <span class="example-number">1</span>
-                        Bicep Curl - Lifting a Weight
-                    </h3>
-                    <p>
-                        When you perform a bicep curl, your brain sends a nerve impulse to your bicep muscle. 
-                        This triggers the release of calcium ions in the muscle cells, which bind to troponin on the 
-                        actin filaments. This binding exposes the myosin-binding sites on actin.
-                    </p>
-                    <p>
-                        The myosin heads then attach to these sites and pull the actin filaments toward the center 
-                        of the sarcomere. As thousands of sarcomeres shorten simultaneously, your entire bicep muscle contracts.
-                    </p>
-                    
-                    <div class="interactive-demo">
-                        <h4>🎮 Interactive Sarcomere - Click to Contract!</h4>
-                        <div class="status-indicator" id="status1">RELAXED STATE</div>
-                        
-                        <div class="sarcomere-container">
-                            <div class="sarcomere" id="sarcomere1">
-                                <div class="z-line"></div>
-                                <div class="filament-stack">
-                                    <div class="filament thin-filament thin-filament-top">Actin</div>
-                                    <div class="filament thick-filament" id="myosin1">
-                                        Myosin
-                                        <div class="myosin-head" style="left: 30%;"></div>
-                                        <div class="myosin-head" style="left: 50%;"></div>
-                                        <div class="myosin-head" style="left: 70%;"></div>
-                                    </div>
-                                    <div class="filament thin-filament thin-filament-bottom">Actin</div>
-                                </div>
-                                <div class="z-line"></div>
-                            </div>
-                        </div>
-
-                        <button class="control-button" onclick="toggleContraction(1)">
-                            Contract Muscle 💪
-                        </button>
-
-                        <div class="key-point">
-                            <strong>Watch closely:</strong> Notice how the actin filaments slide inward over the myosin, 
-                            bringing the Z-lines closer together while the filaments themselves don't change length!
-                        </div>
-                    </div>
+            
+            <h2>🏃 Interactive Simulation 1: Sprint Start</h2>
+            <div class="simulation">
+                <h3>Experience Explosive Muscle Contraction</h3>
+                <canvas id="sprintCanvas" width="800" height="400"></canvas>
+                <div class="stats">
+                    <div class="stat-box"><div>Contractions</div><div class="stat-value" id="contractionCount">0</div></div>
+                    <div class="stat-box"><div>ATP Used</div><div class="stat-value" id="atpCount">0</div></div>
+                    <div class="stat-box"><div>Calcium Level</div><div class="stat-value" id="calciumLevel">Low</div></div>
+                    <div class="stat-box"><div>Force Generated</div><div class="stat-value" id="forceLevel">0%</div></div>
                 </div>
-
-                <!-- EXAMPLE 2: RUNNING -->
-                <div class="example">
-                    <h3>
-                        <span class="example-number">2</span>
-                        Running - The ATP Cycle
-                    </h3>
-                    <p>
-                        During running, your quadriceps muscles repeatedly contract and relax to propel you forward. 
-                        ATP (adenosine triphosphate) provides the energy for this process through a continuous cycle.
-                    </p>
-                    
-                    <div class="interactive-demo">
-                        <h4>The Four Steps of the ATP Cycle</h4>
-                        
-                        <div class="visualization">
-                            <div class="key-point">
-                                <strong>Step 1: Binding</strong> - Myosin head attaches to actin forming cross-bridge
-                            </div>
-                            <div class="key-point">
-                                <strong>Step 2: Power Stroke</strong> - Myosin pulls actin inward, creating movement and releasing phosphate (Pi)
-                            </div>
-                            <div class="key-point">
-                                <strong>Step 3: Release</strong> - ATP binds to myosin, causing it to release from actin
-                            </div>
-                            <div class="key-point">
-                                <strong>Step 4: Recovery</strong> - ATP breaks down into ADP + Pi, re-energizing the myosin head for the next cycle
-                            </div>
-                        </div>
-
-                        <div class="key-point">
-                            <strong>During running:</strong> This cycle repeats hundreds of times per second in each muscle fiber, 
-                            creating the rapid contractions needed for movement. Each cycle requires one ATP molecule!
-                        </div>
-                    </div>
+                <div class="instruction">Click the canvas or press SPACEBAR to trigger muscle contraction!</div>
+                <div class="controls">
+                    <button id="contractBtn">🔥 CONTRACT MUSCLE</button>
+                    <button id="resetBtn">🔄 Reset</button>
                 </div>
-
-                <!-- EXAMPLE 3: SMILING -->
-                <div class="example">
-                    <h3>
-                        <span class="example-number">3</span>
-                        Facial Expression - Calcium's Role
-                    </h3>
-                    <p>
-                        When you smile, the same molecular mechanism occurs in your facial muscles. 
-                        The key to muscle contraction is calcium ions (Ca²⁺), which trigger the entire sliding process.
-                    </p>
-                    
-                    <div class="interactive-demo">
-                        <h4>🎮 Control Calcium Levels - Watch Contraction Happen!</h4>
-                        
-                        <div class="slider-container">
-                            <div class="slider-label">Calcium Ion Concentration:</div>
-                            <input type="range" min="0" max="10" value="0" id="calciumSlider" oninput="updateCalcium(this.value)">
-                            <div style="display: flex; justify-content: space-between; margin-top: 5px; font-size: 0.9em; color: #666;">
-                                <span>Low</span>
-                                <span>High</span>
-                            </div>
-                        </div>
-
-                        <div class="calcium-particles" id="calciumParticles">
-                            <div class="calcium-ion">Ca²⁺</div>
-                            <div class="calcium-ion">Ca²⁺</div>
-                            <div class="calcium-ion">Ca²⁺</div>
-                            <div class="calcium-ion">Ca²⁺</div>
-                            <div class="calcium-ion">Ca²⁺</div>
-                            <div class="calcium-ion">Ca²⁺</div>
-                            <div class="calcium-ion">Ca²⁺</div>
-                            <div class="calcium-ion">Ca²⁺</div>
-                            <div class="calcium-ion">Ca²⁺</div>
-                            <div class="calcium-ion">Ca²⁺</div>
-                        </div>
-
-                        <div class="sarcomere-container">
-                            <div class="sarcomere" id="sarcomere3">
-                                <div class="z-line"></div>
-                                <div class="filament-stack">
-                                    <div class="filament thin-filament thin-filament-top">Actin</div>
-                                    <div class="filament thick-filament">
-                                        Myosin
-                                        <div class="myosin-head" style="left: 30%;"></div>
-                                        <div class="myosin-head" style="left: 70%;"></div>
-                                    </div>
-                                    <div class="filament thin-filament thin-filament-bottom">Actin</div>
-                                </div>
-                                <div class="z-line"></div>
-                            </div>
-                        </div>
-
-                        <div class="key-point">
-                            <strong>What's happening:</strong> As calcium levels increase, binding sites on actin are exposed. 
-                            When calcium reaches high levels, myosin heads can bind and pull the actin filaments, causing contraction!
-                        </div>
-                    </div>
+            </div>
+            
+            <h2>💪 Interactive Simulation 2: Posture vs Heavy Load</h2>
+            <div class="simulation">
+                <h3>Compare Muscle Activity Under Different Loads</h3>
+                <canvas id="loadCanvas" width="800" height="500"></canvas>
+                <div class="slider-container">
+                    <label class="slider-label">Adjust Load: <span id="loadValue">0</span>%</label>
+                    <input type="range" id="loadSlider" min="0" max="100" value="0">
+                </div>
+                <div class="stats">
+                    <div class="stat-box"><div>Postural ATP</div><div class="stat-value" id="posturalATP">10</div></div>
+                    <div class="stat-box"><div>Loaded ATP</div><div class="stat-value" id="loadedATP">10</div></div>
+                    <div class="stat-box"><div>Cross-bridges (Postural)</div><div class="stat-value" id="posturalBridges">2</div></div>
+                    <div class="stat-box"><div>Cross-bridges (Loaded)</div><div class="stat-value" id="loadedBridges">2</div></div>
+                </div>
+            </div>
+            
+            <h2>📚 Key Terms</h2>
+            <div class="term"><div class="term-title">Sarcomere</div>The basic functional unit of a muscle fiber, extending from one Z-line to the next.</div>
+            <div class="term"><div class="term-title">Actin (Thin Filament)</div>The thin protein filament anchored at the Z-lines that is pulled inward by myosin heads.</div>
+            <div class="term"><div class="term-title">Myosin (Thick Filament)</div>The thick protein filament with heads that bind to actin to generate force.</div>
+            <div class="term"><div class="term-title">Z-line (Z-disc)</div>The boundary structures that define each end of a sarcomere and move closer together during contraction.</div>
+            <div class="term"><div class="term-title">Cross-bridge</div>The physical connection formed when a myosin head binds to an actin filament.</div>
+            <div class="term"><div class="term-title">ATP</div>The energy molecule required for myosin to detach from actin and re-cock for the next cycle.</div>
+            <div class="term"><div class="term-title">Calcium Ion (Ca²⁺)</div>The trigger molecule that binds to troponin and exposes actin binding sites.</div>
+            <div class="term"><div class="term-title">Power Stroke</div>The pivoting motion of the myosin head that pulls actin inward, generating force.</div>
+            
+            <h2>🔬 Core Concepts</h2>
+            <div class="concept">
+                <h3>The Sliding Mechanism</h3>
+                <p>Neither actin nor myosin filaments change length during contraction. Instead, they slide past each other like interlocking fingers moving closer together.</p>
+            </div>
+            <div class="concept">
+                <h3>Contraction Sequence</h3>
+                <div class="process-steps">
+                    <div class="step">Neural signal triggers calcium release</div>
+                    <div class="step">Calcium binds to troponin, exposing actin sites</div>
+                    <div class="step">Myosin heads bind to actin, forming cross-bridges</div>
+                    <div class="step">Power stroke pulls actin inward</div>
+                    <div class="step">ATP binds, causing myosin to detach</div>
+                    <div class="step">ATP is hydrolyzed, re-cocking myosin head</div>
                 </div>
             </div>
         </div>
-
-        <footer>
-            <p>Understanding muscle contraction helps us appreciate the amazing complexity of even our simplest movements.</p>
-            <p style="margin-top: 10px; opacity: 0.8;">Created/Visualized by Amaya Davis-Diop & Karina Rodda</p>
-        </footer>
     </div>
-
+    
     <script>
-        const contractionStates = [false, false, false];
-
-        function toggleContraction(exampleNum) {
-            const sarcomere = document.getElementById('sarcomere' + exampleNum);
-            const status = document.getElementById('status' + exampleNum);
-            const button = event.target;
+        const sprintCanvas = document.getElementById('sprintCanvas');
+        const sprintCtx = sprintCanvas.getContext('2d');
+        const loadCanvas = document.getElementById('loadCanvas');
+        const loadCtx = loadCanvas.getContext('2d');
+        
+        let contractionCount = 0, atpUsed = 0, calciumActive = false;
+        let sarcomereLength = 200, isContracting = false, contractionPhase = 0;
+        let currentLoad = 0;
+        
+        function drawSprintSarcomere() {
+            sprintCtx.clearRect(0, 0, 800, 400);
+            const cy = 200, cx = 400;
             
-            contractionStates[exampleNum - 1] = !contractionStates[exampleNum - 1];
+            sprintCtx.strokeStyle = '#333';
+            sprintCtx.lineWidth = 4;
+            sprintCtx.beginPath();
+            sprintCtx.moveTo(cx - sarcomereLength, cy - 60);
+            sprintCtx.lineTo(cx - sarcomereLength, cy + 60);
+            sprintCtx.moveTo(cx + sarcomereLength, cy - 60);
+            sprintCtx.lineTo(cx + sarcomereLength, cy + 60);
+            sprintCtx.stroke();
             
-            if (contractionStates[exampleNum - 1]) {
-                sarcomere.classList.add('contracted');
-                status.textContent = 'CONTRACTED STATE ⚡';
-                status.style.color = '#f5576c';
-                button.textContent = 'Relax Muscle 😌';
-            } else {
-                sarcomere.classList.remove('contracted');
-                status.textContent = 'RELAXED STATE';
-                status.style.color = '#667eea';
-                button.textContent = 'Contract Muscle 💪';
+            sprintCtx.fillStyle = '#e74c3c';
+            sprintCtx.fillRect(cx - 80, cy - 8, 160, 16);
+            for (let i = -3; i <= 3; i++) {
+                sprintCtx.beginPath();
+                sprintCtx.arc(cx + i * 25, cy - 15, 6, 0, Math.PI * 2);
+                sprintCtx.fill();
+                sprintCtx.beginPath();
+                sprintCtx.arc(cx + i * 25, cy + 15, 6, 0, Math.PI * 2);
+                sprintCtx.fill();
             }
+            
+            sprintCtx.fillStyle = '#3498db';
+            sprintCtx.fillRect(cx - sarcomereLength, cy - 30, sarcomereLength - 90, 8);
+            sprintCtx.fillRect(cx + 90, cy - 30, sarcomereLength - 90, 8);
+            sprintCtx.fillRect(cx - sarcomereLength, cy + 22, sarcomereLength - 90, 8);
+            sprintCtx.fillRect(cx + 90, cy + 22, sarcomereLength - 90, 8);
+            
+            if (calciumActive) {
+                sprintCtx.fillStyle = '#f39c12';
+                for (let i = 0; i < 15; i++) {
+                    sprintCtx.beginPath();
+                    sprintCtx.arc(cx - 150 + Math.random() * 300, cy - 70 + Math.random() * 140, 4, 0, Math.PI * 2);
+                    sprintCtx.fill();
+                }
+            }
+            
+            sprintCtx.fillStyle = '#2ecc71';
+            sprintCtx.font = 'bold 14px Arial';
+            for (let i = 0; i < 3; i++) sprintCtx.fillText('ATP', cx - 100 + i * 100, cy + 80);
         }
-
-        let currentStep = 1;
-
-        const stepData = {
-            1: {
-                title: "Step 1: Binding (Cross-Bridge Formation)",
-                description: "The myosin head, energized from the previous cycle, binds to an exposed binding site on the actin filament. This creates what's called a 'cross-bridge'. At this point, the myosin head is in a high-energy 'cocked' position, ready to pull. Watch as the myosin head attaches to the actin strand below!",
-                visualization: `
-                    <div class="step-animation-container">
-                        <div style="text-align: center; margin-bottom: 20px;">
-                            <strong style="color: #667eea;">Myosin Head Approaching Actin</strong>
-                        </div>
-                        <div class="myosin-head-demo">
-                            <div class="actin-strand">
-                                ACTIN FILAMENT
-                                <div class="binding-site" style="left: 45%;"></div>
-                            </div>
-                            <div class="myosin-head-animated" id="animatedHead1" style="top: -80px; left: 45%;">
-                                <div class="myosin-neck" id="animatedNeck1"></div>
-                            </div>
-                        </div>
-                        <div class="arrow-indicator">↓</div>
-                        <div style="background: white; padding: 15px; border-radius: 8px; text-align: center;">
-                            <strong>Result:</strong> Cross-bridge formed! Myosin is now attached and ready to pull.
-                        </div>
-                    </div>
-                `,
-                animation: () => {
+        
+        function triggerContraction() {
+            if (isContracting) return;
+            isContracting = true;
+            calciumActive = true;
+            contractionCount++;
+            atpUsed += 8;
+            
+            const interval = setInterval(() => {
+                contractionPhase++;
+                if (sarcomereLength > 140) sarcomereLength -= 4;
+                drawSprintSarcomere();
+                updateSprintStats();
+                
+                if (contractionPhase >= 15) {
+                    clearInterval(interval);
                     setTimeout(() => {
-                        const head = document.getElementById('animatedHead1');
-                        if (head) head.style.top = '-50px';
-                    }, 500);
+                        calciumActive = false;
+                        updateSprintStats();
+                        const relax = setInterval(() => {
+                            if (sarcomereLength < 200) {
+                                sarcomereLength += 4;
+                                drawSprintSarcomere();
+                                updateSprintStats();
+                            } else {
+                                clearInterval(relax);
+                                isContracting = false;
+                                contractionPhase = 0;
+                                drawSprintSarcomere();
+                                updateSprintStats();
+                            }
+                        }, 30);
+                    }, 200);
                 }
-            },
-            2: {
-                title: "Step 2: Power Stroke (Pulling Phase)",
-                description: "This is where the magic happens! The myosin head pivots and pulls the actin filament toward the center of the sarcomere. During this power stroke, inorganic phosphate (Pi) is released, and the myosin head moves from its high-energy 'cocked' position to a low-energy position. This movement causes the actin to slide approximately 10 nanometers!",
-                visualization: `
-                    <div class="step-animation-container">
-                        <div style="text-align: center; margin-bottom: 20px;">
-                            <strong style="color: #f5576c;">The Power Stroke in Action</strong>
-                        </div>
-                        <div class="myosin-head-demo">
-                            <div class="actin-strand">
-                                ACTIN FILAMENT
-                                <div class="binding-site" style="left: 45%;"></div>
-                            </div>
-                            <div class="myosin-head-animated" id="animatedHead2" style="top: -50px; left: 45%;">
-                                <div class="myosin-neck" id="animatedNeck2"></div>
-                            </div>
-                            <div class="phosphate" id="phosphate2" style="position: absolute; top: -20px; left: 48%; opacity: 0;">Pi</div>
-                        </div>
-                        <div class="arrow-indicator">→ PULL →</div>
-                        <div style="background: white; padding: 15px; border-radius: 8px; text-align: center;">
-                            <strong>Energy Released:</strong> Phosphate (Pi) released • Actin slides inward • Force generated!
-                        </div>
-                    </div>
-                `,
-                animation: () => {
-                    setTimeout(() => {
-                        const neck = document.getElementById('animatedNeck2');
-                        const head = document.getElementById('animatedHead2');
-                        const phosphate = document.getElementById('phosphate2');
-                        if (neck) neck.style.transform = 'translateX(-50%) rotate(-30deg)';
-                        if (head) head.style.left = '35%';
-                        if (phosphate) {
-                            phosphate.style.opacity = '1';
-                            phosphate.style.top = '-60px';
-                        }
-                    }, 500);
-                }
-            },
-            3: {
-                title: "Step 3: Release (ATP Binding)",
-                description: "After the power stroke, the myosin head is tightly bound to actin in a 'rigor' state. A fresh ATP molecule now binds to the myosin head, causing it to release from the actin filament. Without ATP, muscles would remain locked in this bound state (this is what causes rigor mortis). Watch as ATP arrives and breaks the bond!",
-                visualization: `
-                    <div class="step-animation-container">
-                        <div style="text-align: center; margin-bottom: 20px;">
-                            <strong style="color: #ffa500;">ATP Arrives to Release the Bond</strong>
-                        </div>
-                        <div class="myosin-head-demo">
-                            <div class="actin-strand">
-                                ACTIN FILAMENT
-                                <div class="binding-site" style="left: 35%;"></div>
-                            </div>
-                            <div class="myosin-head-animated" id="animatedHead3" style="top: -50px; left: 35%;"></div>
-                            <div class="atp-molecule" id="atp3" style="position: absolute; top: -50px; right: 20px;">ATP</div>
-                        </div>
-                        <div class="arrow-indicator">↑ DETACH ↑</div>
-                        <div style="background: white; padding: 15px; border-radius: 8px; text-align: center;">
-                            <strong>ATP Binding:</strong> Myosin releases from actin • Ready for next cycle
-                        </div>
-                    </div>
-                `,
-                animation: () => {
-                    setTimeout(() => {
-                        const atp = document.getElementById('atp3');
-                        const head = document.getElementById('animatedHead3');
-                        if (atp) atp.style.right = '130px';
-                        setTimeout(() => {
-                            if (head) head.style.top = '-80px';
-                        }, 600);
-                    }, 500);
-                }
-            },
-            4: {
-                title: "Step 4: Recovery (Re-Energizing)",
-                description: "The ATP molecule bound to myosin is now hydrolyzed (broken down) into ADP (adenosine diphosphate) and Pi (inorganic phosphate). This chemical reaction provides the energy to 'cock' the myosin head back into its high-energy position. The myosin head is now re-energized and ready to bind to a new site on actin, starting the cycle over again!",
-                visualization: `
-                    <div class="step-animation-container">
-                        <div style="text-align: center; margin-bottom: 20px;">
-                            <strong style="color: #42a5f5;">ATP Breakdown Powers Recovery</strong>
-                        </div>
-                        <div style="display: flex; justify-content: center; align-items: center; gap: 20px; margin: 20px 0;">
-                            <div class="atp-molecule">ATP</div>
-                            <div class="arrow-indicator" style="font-size: 1.5em;">→</div>
-                            <div class="adp-molecule">ADP</div>
-                            <div class="arrow-indicator" style="font-size: 1.5em;">+</div>
-                            <div class="phosphate">Pi</div>
-                        </div>
-                        <div class="myosin-head-demo">
-                            <div class="actin-strand">
-                                ACTIN FILAMENT
-                                <div class="binding-site" style="left: 55%;"></div>
-                            </div>
-                            <div class="myosin-head-animated" id="animatedHead4" style="top: -80px; left: 35%;">
-                                <div class="myosin-neck"></div>
-                            </div>
-                        </div>
-                        <div class="arrow-indicator">⟲ READY TO REPEAT ⟲</div>
-                        <div style="background: white; padding: 15px; border-radius: 8px; text-align: center;">
-                            <strong>Re-Energized:</strong> Myosin head "cocked" • Moving to next binding site • Cycle continues!
-                        </div>
-                    </div>
-                `,
-                animation: () => {
-                    setTimeout(() => {
-                        const head = document.getElementById('animatedHead4');
-                        if (head) head.style.left = '55%';
-                    }, 500);
-                }
-            }
-        };
-
-        function showStepDetail(step) {
-            currentStep = step;
-            const popup = document.getElementById('stepPopup');
-            const title = document.getElementById('popupTitle');
-            const description = document.getElementById('popupDescription');
-            const visualization = document.getElementById('stepVisualization');
+            }, 30);
+        }
+        
+        function updateSprintStats() {
+            document.getElementById('contractionCount').textContent = contractionCount;
+            document.getElementById('atpCount').textContent = atpUsed;
+            document.getElementById('calciumLevel').textContent = calciumActive ? 'High' : 'Low';
+            document.getElementById('forceLevel').textContent = Math.round((200 - sarcomereLength) / 60 * 100) + '%';
+        }
+        
+        function resetSprint() {
+            contractionCount = 0;
+            atpUsed = 0;
+            calciumActive = false;
+            sarcomereLength = 200;
+            isContracting = false;
+            contractionPhase = 0;
+            drawSprintSarcomere();
+            updateSprintStats();
+        }
+        
+        function drawSarcomere(ctx, cy, cx, len, bridges, atp) {
+            ctx.strokeStyle = '#333';
+            ctx.lineWidth = 3;
+            ctx.beginPath();
+            ctx.moveTo(cx - len/2, cy - 40);
+            ctx.lineTo(cx - len/2, cy + 40);
+            ctx.moveTo(cx + len/2, cy - 40);
+            ctx.lineTo(cx + len/2, cy + 40);
+            ctx.stroke();
             
-            const data = stepData[step];
-            title.textContent = data.title;
-            description.textContent = data.description;
-            visualization.innerHTML = data.visualization;
+            ctx.fillStyle = '#e74c3c';
+            ctx.fillRect(cx - 60, cy - 6, 120, 12);
             
-            popup.style.display = 'block';
+            for (let i = 0; i < bridges; i++) {
+                const x = cx - 60 + (120 / (bridges + 1)) * (i + 1);
+                ctx.beginPath();
+                ctx.arc(x, cy - 12, 5, 0, Math.PI * 2);
+                ctx.fill();
+                ctx.beginPath();
+                ctx.arc(x, cy + 12, 5, 0, Math.PI * 2);
+                ctx.fill();
+            }
             
-            if (data.animation) {
-                data.animation();
-            }
-        }
-
-        function closePopup() {
-            document.getElementById('stepPopup').style.display = 'none';
-        }
-
-        function nextStep() {
-            currentStep = currentStep < 4 ? currentStep + 1 : 1;
-            showStepDetail(currentStep);
-        }
-
-        function previousStep() {
-            currentStep = currentStep > 1 ? currentStep - 1 : 4;
-            showStepDetail(currentStep);
-        }
-
-        function updateCalcium(value) {
-            const particles = document.querySelectorAll('.calcium-ion');
-            const sarcomere = document.getElementById('sarcomere3');
+            ctx.fillStyle = '#3498db';
+            const aLen = len/2 - 65;
+            ctx.fillRect(cx - len/2, cy - 22, aLen, 6);
+            ctx.fillRect(cx + 65, cy - 22, aLen, 6);
+            ctx.fillRect(cx - len/2, cy + 16, aLen, 6);
+            ctx.fillRect(cx + 65, cy + 16, aLen, 6);
             
-            particles.forEach((particle, index) => {
-                if (index < value) {
-                    particle.classList.add('active');
-                } else {
-                    particle.classList.remove('active');
-                }
-            });
-
-            if (value >= 7) {
-                sarcomere.classList.add('contracted');
-            } else {
-                sarcomere.classList.remove('contracted');
-            }
+            ctx.fillStyle = '#2ecc71';
+            ctx.font = 'bold 12px Arial';
+            ctx.fillText('ATP: ' + atp, cx - 25, cy + 60);
         }
-
-        // Close popup when clicking outside
-        window.onclick = function(event) {
-            const popup = document.getElementById('stepPopup');
-            if (event.target === popup) {
-                closePopup();
-            }
+        
+        function drawLoadComparison() {
+            loadCtx.clearRect(0, 0, 800, 500);
+            loadCtx.fillStyle = '#333';
+            loadCtx.font = 'bold 16px Arial';
+            loadCtx.fillText('Postural Muscle (Low Load)', 60, 40);
+            loadCtx.fillText('Heavy Load Muscle', 500, 40);
+            
+            // Left muscle (postural) - cy, cx, length, bridges, atp
+            drawSarcomere(loadCtx, 250, 200, 180, 2, 10);
+            
+            // Right muscle (loaded) - same Y position for alignment
+            const loadLen = 180 - (currentLoad * 0.6);
+            const bridges = 2 + Math.floor(currentLoad / 12);
+            const atp = 10 + Math.floor(currentLoad / 5);
+            drawSarcomere(loadCtx, 250, 600, loadLen, bridges, atp);
+            
+            document.getElementById('posturalATP').textContent = 10;
+            document.getElementById('loadedATP').textContent = atp;
+            document.getElementById('posturalBridges').textContent = 2;
+            document.getElementById('loadedBridges').textContent = bridges;
         }
+        
+        function updateLoad(val) {
+            currentLoad = parseInt(val);
+            document.getElementById('loadValue').textContent = currentLoad;
+            drawLoadComparison();
+        }
+        
+        document.getElementById('contractBtn').addEventListener('click', triggerContraction);
+        document.getElementById('resetBtn').addEventListener('click', resetSprint);
+        sprintCanvas.addEventListener('click', triggerContraction);
+        document.addEventListener('keydown', e => {
+            if (e.code === 'Space') { e.preventDefault(); triggerContraction(); }
+        });
+        document.getElementById('loadSlider').addEventListener('input', e => updateLoad(e.target.value));
+        
+        drawSprintSarcomere();
+        updateSprintStats();
+        drawLoadComparison();
     </script>
 </body>
 </html>
